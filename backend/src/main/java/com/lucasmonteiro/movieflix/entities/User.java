@@ -6,16 +6,38 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "tb_user")
 public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
 	private String email;
 	private String password;
 	
+	@ManyToMany(fetch = FetchType.EAGER) // fetch = FetchType.EAGER --> Serve para forçar que sempre que for buscar um usuário no banco já vai vir pendurado nele os Roles
+	@JoinTable(name = "tb_user_role",
+		joinColumns = @JoinColumn(name = "user_id"),
+		inverseJoinColumns = @JoinColumn(name = "role_id")
+	)
 	private Set<Role> roles = new HashSet<>();
+	
+	@OneToMany(mappedBy = "user")
 	private List<Review> reviews = new ArrayList<>();
 	
 	public User() {}
