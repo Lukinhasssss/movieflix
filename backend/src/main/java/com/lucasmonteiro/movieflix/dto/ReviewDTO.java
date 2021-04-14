@@ -2,6 +2,7 @@ package com.lucasmonteiro.movieflix.dto;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 
 import com.lucasmonteiro.movieflix.entities.Review;
@@ -13,6 +14,7 @@ public class ReviewDTO implements Serializable {
 	private Long id;
 	
 	@NotEmpty(message = "Text cannot be empty")
+	@NotBlank
 	private String text;
 	private Long movieId;
 	
