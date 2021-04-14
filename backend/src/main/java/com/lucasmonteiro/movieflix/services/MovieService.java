@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.lucasmonteiro.movieflix.dto.MovieDTO;
 import com.lucasmonteiro.movieflix.entities.Movie;
 import com.lucasmonteiro.movieflix.repositories.MovieRepository;
+import com.lucasmonteiro.movieflix.services.exceptions.ResourceNotFoundException;
 
 @Service
 public class MovieService {
@@ -30,8 +31,7 @@ public class MovieService {
 	@Transactional(readOnly = true)
 	public MovieDTO findById(Long id) {
 		Optional<Movie> obj = repository.findById(id);
-//		Movie movie = obj.orElseThrow(() -> new ResourceNotFoundException("Product not found"));
-		Movie movie = obj.orElse(null);
+		Movie movie = obj.orElseThrow(() -> new ResourceNotFoundException("Filme não encontrado"));
 		return new MovieDTO(movie);
 	}
 
