@@ -2,8 +2,7 @@ package com.lucasmonteiro.movieflix.dto;
 
 import java.io.Serializable;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 import com.lucasmonteiro.movieflix.entities.Review;
 
@@ -13,8 +12,7 @@ public class ReviewDTO implements Serializable {
 
 	private Long id;
 	
-	@NotEmpty(message = "Text cannot be empty")
-	@NotBlank
+	@Size(min = 15, message = "O comentário precisa ter no mínimo 15 caracteres")
 	private String text;
 	private Long movieId;
 	
