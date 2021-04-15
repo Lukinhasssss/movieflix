@@ -57,7 +57,8 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 		.antMatchers(HttpMethod.POST, CREATE_ACCOUNT).hasAnyRole("MEMBER")
 		.antMatchers(USERS).hasRole("MEMBER") // Somente para poder testar a rota mas o certo seria ter um ROLE_ADMIN por exemplo
 		.antMatchers(HttpMethod.POST, POST_REVIEW).hasRole("MEMBER")
-		.antMatchers(HttpMethod.GET, VISITOR_AND_MEMBER).hasAnyRole("VISITOR", "MEMBER")
+//		.antMatchers(HttpMethod.GET, VISITOR_AND_MEMBER).hasAnyRole("VISITOR", "MEMBER")
+		.antMatchers(VISITOR_AND_MEMBER).hasAnyRole("VISITOR", "MEMBER") // Somente para testes
 		.anyRequest().authenticated();
 		
 		http.cors().configurationSource(corsConfigurationSource());

@@ -32,7 +32,7 @@ public class GenreService {
 	
 	@Transactional(readOnly = true)
 	public GenreDTO findById(Long id) {
-		Optional<Genre> obj = repository.findById(null);
+		Optional<Genre> obj = repository.findById(id);
 		Genre genre = obj.orElseThrow(() -> new ResourceNotFoundException("Genero não encontrado"));
 		return new GenreDTO(genre);
 	}
