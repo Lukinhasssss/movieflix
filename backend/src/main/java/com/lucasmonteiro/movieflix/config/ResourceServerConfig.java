@@ -33,6 +33,8 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 	
 	private static final String[] CREATE_ACCOUNT = { "/users" };
 	
+	private static final String[] USERS = { "/users/**" };
+	
 	private static final String[] POST_REVIEW = { "/reviews" };
 	
 	private static final String[] VISITOR_AND_MEMBER = { "/movies/**", "reviews/**", "genres/**" };
@@ -53,6 +55,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 		http.authorizeRequests()
 		.antMatchers(PUBLIC).permitAll()
 		.antMatchers(HttpMethod.POST, CREATE_ACCOUNT).hasAnyRole("MEMBER")
+		.antMatchers(USERS).hasRole("MEMBER") // Somente para poder testar a rota mas o certo seria ter um ROLE_ADMIN por exemplo
 		.antMatchers(HttpMethod.POST, POST_REVIEW).hasRole("MEMBER")
 		.antMatchers(HttpMethod.GET, VISITOR_AND_MEMBER).hasAnyRole("VISITOR", "MEMBER")
 		.anyRequest().authenticated();

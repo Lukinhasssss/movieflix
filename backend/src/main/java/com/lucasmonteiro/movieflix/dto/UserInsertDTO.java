@@ -1,5 +1,8 @@
 package com.lucasmonteiro.movieflix.dto;
 
+import com.lucasmonteiro.movieflix.services.validation.UserInsertValid;
+
+@UserInsertValid
 public class UserInsertDTO extends UserDTO {
 
 	private static final long serialVersionUID = 1L;
