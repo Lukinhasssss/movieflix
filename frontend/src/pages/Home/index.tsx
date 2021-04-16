@@ -1,9 +1,31 @@
+import { useForm } from 'react-hook-form'
+import { useState } from 'react'
+
+import { LoginData, makeLogin } from '../../core/utils/requests'
+
 import { ReactComponent as MainImage } from '../../core/assets/main.svg'
 import { ReactComponent as Arrow } from '../../core/assets/arrow-right.svg'
-
 import './styles.scss'
+import { saveSessionData } from '../../core/utils/auth'
+import { useHistory } from 'react-router'
 
 const Home = () => {
+  const { register, handleSubmit } = useForm<LoginData>()
+  const [hasError, setHasError] = useState(false)
+  const history = useHistory()
+
+  const onSubmit = (data: LoginData) => {
+    makeLogin(data)
+      .then(response => {
+        setHasError(false)
+        saveSessionData(response.data)
+        history.push('/movies')
+      })
+      .catch(() => {
+        setHasError(true)
+      })
+  }
+
   return (
     <div className="home-container">
       <div className="home-content">
@@ -15,14 +37,27 @@ const Home = () => {
           </div>
         </div>
 
-        <form className="login-form-container">
+        <form
+        onSubmit={ handleSubmit(onSubmit) }
+          className="login-form-container"
+        >
           <h1 className="login-form-title">Login</h1>
+
+          {hasError && (
+            <div className="alert">
+              <p className="alert-text">Usuário ou senha inválidos!</p>
+              <span className="close" onClick={ () => setHasError(false) }>X</span>
+            </div>
+          )}
+
           <input
+            {...register("username", { required: true },)}
             type="email"
             placeholder="Email"
             className="login-form-input"
           />
           <input
+            {...register("password", { required: true })}
             type="password"
             placeholder="Senha"
             className="login-form-input"
