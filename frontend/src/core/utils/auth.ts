@@ -1,3 +1,5 @@
+import history from "./history"
+
 export const CLIENT_ID = process.env.REACT_APP_CLIENT_ID ?? 'movieflix'
 export const CLIENT_SECRET = process.env.REACT_APP_CLIENT_SECRET ?? 'movieflix123'
 
@@ -14,9 +16,14 @@ export const saveSessionData = (loginResponse: LoginResponse) => {
   localStorage.setItem('authData', JSON.stringify(loginResponse)) // JSON.stringify() --> Transforma objeto em string
 }
 
-export const getSessionData = () => {
+export const getSessionData = () => { // Recupera os dados da sessão do usuário
   const sessionData = localStorage.getItem('authData') ?? '{}'
   const parsedSessionData = JSON.parse(sessionData) // JSON.parse() --> Transforma string em objeto
 
   return parsedSessionData as LoginResponse
+}
+
+export const logout = () => {
+  localStorage.removeItem('authData')
+  history.replace('/')
 }
