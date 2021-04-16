@@ -1,0 +1,34 @@
+:root {
+  --appBackground: #525252;
+  --mediumGray: #6C6C6C;
+  --lightGray: #9E9E9E;
+  --yellow: #FFC700;
+  --white: #FFF;
+  --black: #000;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: 'Open Sans', sans-serif;
+}
+
+body {
+  background-color: var(--appBackground);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--white);
+}
+
+p {
+  color: var(--lightGray);
+}
+
+a {
+  text-decoration: none;
+}
