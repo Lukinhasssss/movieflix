@@ -1,6 +1,6 @@
 .home-container {
   width: 100%;
-  max-width: 1366px;
+  max-width: 1440px;
   margin: 0 auto;
   padding: 60px 120px;
 }
@@ -101,12 +101,18 @@
   border-radius: 10px;
   cursor: pointer;
   margin-top: 50px;
+  outline: 0;
   border: 0;
-  transition: 0.3s;
+  transition: background-color 0.3s;
 }
 
 .login-button-container:hover {
   background-color: #d3ab18;
+}
+
+.login-button-container:active,
+.login-button-container:focus {
+  box-shadow: 0 0 3pt 2pt #333;
 }
 
 .login-button-text {

@@ -1,0 +1,12 @@
+.movie-container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 30px 120px 70px 120px;
+}
+
+.movie-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 270px);
+  gap: 30px;
+}
