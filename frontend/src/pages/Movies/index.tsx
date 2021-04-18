@@ -13,7 +13,7 @@ const Movies = () => {
 
   const getProducts = () => {
     const params = {
-      linesPerPage: 12
+      linesPerPage: 16
     }
 
     makePrivateRequest({ url: '/movies', params })

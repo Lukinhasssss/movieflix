@@ -1,29 +1,44 @@
-// import { useParams } from 'react-router'
-import { ReactComponent as MovieImage } from '../../../../core/assets/movie-image.svg'
-import Review from './components/Review'
+import { useCallback, useEffect, useState } from 'react'
+import { useParams } from 'react-router'
+import { Movie } from '../../../../core/types/Movie'
+import { makePrivateRequest } from '../../../../core/utils/requests'
+import MovieReview from './components/MovieReview'
 import './styles.scss'
 
-// type ParamsType = {
-//   movieId: string
-// }
+
+type ParamsType = {
+  movieId: string
+}
 
 const MovieDetails = () => {
-  // const { movieId } = useParams<ParamsType>()
+  const { movieId } = useParams<ParamsType>()
+  const [movie, setMovie] = useState<Movie>()
+
+  const getMovies = useCallback(() => {
+    makePrivateRequest({ url: `/movies/${movieId}` })
+      .then(response => {
+        setMovie(response.data)
+      })
+  }, [movieId])
+
+  useEffect(() => {
+    getMovies()
+  })
 
   return (
     <div className="movie-details-container">
       <div className="movie-details-content">
         <div className="movie-details-image-container">
-          <MovieImage className="movie-details-image" />
+          <img src={ movie?.imgUrl } alt={ movie?.title } className="movie-details-image" />
         </div>
 
         <div className="movie-details-info">
-          <h1 className="movie-details-title">O Retorno do Rei</h1>
-          <span className="movie-details-year">2013</span>
-          <h3 className="movie-details-subtitle">O olho do inimigo está se movendo</h3>
+          <h1 className="movie-details-title">{ movie?.title }</h1>
+          <span className="movie-details-year">{ movie?.year }</span>
+          <h3 className="movie-details-subtitle">{ movie?.subTitle }</h3>
           <div className="movie-details-description-container">
             <p className="movie-details-description-text">
-              O confronto final entre as forças do bem e do mal que lutam pelo controle do futuro da Terra Média se aproxima. Sauron planeja um grande ataque a Minas Tirith, capital de Gondor, o que faz com que Gandalf e Pippin partam para o local na intenção de ajudar a resistência. Um exército é reunido por Theoden em Rohan, em mais uma tentativa de deter as forças de Sauron. Enquanto isso, Frodo, Sam e Gollum seguem sua viagem rumo à Montanha da Perdição para destruir o anel.Sauron planeja um grande ataque a Minas Tirith, capital de Gondor, o que faz com que Gandalf e Pippin partam para o local na intenção de ajudar a resistência. Um exército é reunido por Theoden em Rohan, em mais uma tentativa de deter as forças de Sauron. Enquanto isso, Frodo, Sam e Gollum seguem sua viagem rumo à Montanha da Perdição para destruir o anel.
+              { movie?.synopsis }
             </p>
           </div>
         </div>
@@ -36,12 +51,13 @@ const MovieDetails = () => {
         </button>
       </div>
 
-      <div className="reviews-container">
-        <Review />
-        <Review />
-        <Review />
-        <Review />
-      </div>
+      {movie?.reviews.length !== 0 && (
+        <div className="reviews-container">
+          {movie?.reviews.map(review => (
+            <MovieReview review={ review } key={review.id} />
+          ))}
+        </div>
+      )}
     </div>
   )
 }

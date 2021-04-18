@@ -18,9 +18,15 @@ export type Review = {
   id: number
   text: string
   movieId: number
+  user: User
 }
 
 export type Genre = {
+  id: number
+  name: string
+}
+
+type User = {
   id: number
   name: string
 }
