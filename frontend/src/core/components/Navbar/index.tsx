@@ -17,11 +17,11 @@ const Navbar = () => {
       <div className="navbar-content">
         <Link to="/" className="navbar-logo">MovieFlix</Link>
         {isUserLogged && (
-          <div className="navbar-logout-button">
-            <span
-              className="navbar-logout-button-text"
-              onClick={ logout }
-            >
+          <div
+            className="navbar-logout-button"
+            onClick={ logout }
+          >
+            <span className="navbar-logout-button-text">
               Sair
             </span>
           </div>
