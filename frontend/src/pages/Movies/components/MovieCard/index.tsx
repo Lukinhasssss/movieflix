@@ -1,17 +1,21 @@
-import { ReactComponent as MovieImage } from '../../../../core/assets/movie-image.svg';
+import { Movie } from '../../../../core/types/Movie';
 import './styles.scss'
 
-const MovieCard = () => {
+type Props = {
+  movie: Movie
+}
+
+const MovieCard = ({ movie }: Props) => {
   return (
     <div className="movie-card-container">
-      <MovieImage className="movie-image" />
+      <img src={ movie.imgUrl } alt={ movie.title } className="movie-image" />
 
       <div className="movie-info-container">
         <h3 className="movie-title">
-          O Retorno do Rei
+          { movie.title }
         </h3>
-        <span className="movie-year">2013</span>
-        <h4 className="movie-subtitle">O olho do inimigo está se movendo.</h4>
+        <span className="movie-year">{ movie.year }</span>
+        <h4 className="movie-subtitle">{ movie.subTitle }</h4>
       </div>
     </div>
   )

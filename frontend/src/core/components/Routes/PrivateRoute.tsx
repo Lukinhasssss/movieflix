@@ -5,9 +5,10 @@ type Props = {
   children: React.ReactNode
   path: string
   allowedRoutes?: Role[]
+  exact?: boolean
 }
 
-const PrivateRoute = ({ children, path, allowedRoutes }: Props) => {
+const PrivateRoute = ({ children, path, allowedRoutes, exact }: Props) => {
   return (
     <Route
       path={ path }

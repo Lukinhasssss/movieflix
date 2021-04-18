@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import Movies from "./pages/Movies";
 import PrivateRoute from "./core/components/Routes/PrivateRoute";
 import { isAuthenticated } from "./core/utils/auth";
+import MovieDetails from "./pages/Movies/components/MovieDetails";
 
 const Routes = () => (
   <Router history={ history }>
@@ -22,8 +23,12 @@ const Routes = () => (
         }}
       />
 
-      <PrivateRoute path="/movies">
+      <PrivateRoute path="/movies" exact>
         <Movies />
+      </PrivateRoute>
+
+      <PrivateRoute path="/movies/:movieId">
+        <MovieDetails />
       </PrivateRoute>
     </Switch>
   </Router>
