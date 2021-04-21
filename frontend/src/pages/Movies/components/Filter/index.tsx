@@ -4,24 +4,14 @@ import { Genre } from '../../../../core/types/Movie'
 import { makePrivateRequest } from '../../../../core/utils/requests'
 import './styles.scss'
 
-export type FilterData = {
-  genreId?: number
-}
-
 type Props = {
-  onSearch: (filter: FilterData) => void
+  genre?: Genre
+  handleChangeGenre: (genre: Genre) => void
 }
 
-const Filter = ({ onSearch }: Props) => {
+const Filter = ({ genre, handleChangeGenre }: Props) => {
   const [isLoadingGenres, setIsLoadingGenres] = useState(false)
   const [genres, setGenres] = useState<Genre[]>()
-  const [genre, setGenre] = useState<Genre>()
-
-  const handleChangeGenre = (genre: Genre) => {
-    setGenre(genre)
-
-    onSearch({ genreId: genre?.id })
-  }
 
   useEffect(() => {
     setIsLoadingGenres(true)
