@@ -7,21 +7,24 @@ import { MovieResponse } from '../../core/types/Movie';
 import { makePrivateRequest } from '../../core/utils/requests';
 
 import './styles.scss';
+import Pagination from './components/Pagination';
 
 const Movies = () => {
   const [moviesResponse, setMoviesResponse] = useState<MovieResponse>()
+  const [activePage, setActivePage] = useState(0)
 
   const getMovies = useCallback((filter?: FilterData) => {
     const params = {
       linesPerPage: 8,
-      genreId: filter?.genreId
+      genreId: filter?.genreId,
+      page: activePage
     }
 
     makePrivateRequest({ url: '/movies', params })
       .then(response => {
         setMoviesResponse(response.data)
       })
-  }, [])
+  }, [activePage])
 
   useEffect(() => {
     getMovies()
@@ -38,6 +41,14 @@ const Movies = () => {
           </Link>
         ))}
       </div>
+
+      {moviesResponse && (
+        <Pagination
+          totalPages={ moviesResponse.totalPages }
+          activePage={ activePage }
+          onChange={ page => setActivePage(page) }
+        />
+      )}
     </div>
   )
 }

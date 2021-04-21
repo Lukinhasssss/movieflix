@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { LoginData, makeLogin } from '../../core/utils/requests'
 
 import { ReactComponent as MainImage } from '../../core/assets/main.svg'
-import { ReactComponent as Arrow } from '../../core/assets/arrow-right.svg'
+import { ReactComponent as Arrow } from '../../core/assets/arrow.svg'
 import './styles.scss'
 import { saveSessionData } from '../../core/utils/auth'
 import { useHistory } from 'react-router'
