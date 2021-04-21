@@ -1,9 +1,12 @@
 import { useCallback, useEffect, useState } from 'react'
-import { useParams } from 'react-router'
+import { useHistory, useParams } from 'react-router'
+import { toast } from 'react-toastify';
+
 import { Movie } from '../../../../core/types/Movie'
 import { getAccessTokenDecoded } from '../../../../core/utils/auth'
 import { makePrivateRequest } from '../../../../core/utils/requests'
 import MovieReview from './components/MovieReview'
+
 import './styles.scss'
 
 type ParamsType = {
@@ -11,9 +14,11 @@ type ParamsType = {
 }
 
 const MovieDetails = () => {
+  const history = useHistory()
   const { movieId } = useParams<ParamsType>()
   const [movie, setMovie] = useState<Movie>()
   const [hasPermission, setHasPermission] = useState(false)
+  const [review, setReview] = useState('')
 
   const getMovies = useCallback(() => {  
     makePrivateRequest({ url: `/movies/${movieId}` })
@@ -22,12 +27,35 @@ const MovieDetails = () => {
       })
   }, [movieId])
 
+  const saveReview = () => {
+    const payload = {
+      movieId,
+      text: review
+    }
+
+    makePrivateRequest({
+      url: '/reviews',
+      method: 'POST',
+      data: payload
+    }).then(() => {
+      history.push(`/`)
+      toast.success('Avaliação salva com sucesso 😄', { delay: 500 })
+      // window.location.reload() // Da certo mas para este caso não fica muito legal.
+    }).catch(() => {
+      toast.error('Ocorreu um erro ao salvar sua avaliação 😕')
+    })
+  }
+
   useEffect(() => {
     const currentUser = getAccessTokenDecoded()
     setHasPermission(currentUser.authorities.toString() === 'ROLE_MEMBER')
 
     getMovies()
   }, [getMovies])
+
+  const handleChangeReview = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setReview(event.target.value)
+  }
 
   return (
     <div className="movie-details-container">
@@ -50,8 +78,17 @@ const MovieDetails = () => {
 
       {hasPermission && (
         <div className="post-new-review-container">
-          <textarea placeholder="Digite aqui sua avaliação" className="new-review-text" />
-          <button className="new-review-button">
+          <textarea
+            value={ review }
+            placeholder="Digite aqui sua avaliação"
+            className="new-review-text"
+            onChange={ handleChangeReview }
+          />
+
+          <button
+            className="new-review-button"
+            onClick={ saveReview }
+          >
             <span className="new-review-button-text">Salvar avaliação</span>
           </button>
         </div>
