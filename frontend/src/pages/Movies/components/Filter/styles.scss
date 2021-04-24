@@ -11,21 +11,6 @@
   padding: 5px 10px;
 }
 
-// .select-container {
-//   width: 280px;
-//   height: 100%;
-//   padding-left: 10px;
-//   border: 1px solid #E1E1E1;
-//   border-radius: 10px;
-//   background-color: var(--mediumGray);
-//   outline: 0;
-//   font-weight: normal;
-//   font-size: 16px;
-//   line-height: 22px;
-//   letter-spacing: -0.015em;
-//   color: var(--white);
-// }
-
 .filter-select-container {
   width: 280px;
   height: 100%;
@@ -36,7 +21,6 @@
     border: 1px solid #E1E1E1;
     border-radius: 10px;
     background-color: var(--mediumGray);
-    // outline: 0 !important;
   }
 
   .genres-select__control:hover {
