@@ -4,7 +4,8 @@ const MovieSaveReviewLoader = () => (
   <ContentLoader 
     speed={2}
     width={'100%'}
-    height={170}
+    height={'100%'}
+    style={{ marginBottom: 30 }}
     viewBox="0 0 1150 170"
     backgroundColor="#727272"
     foregroundColor="#929292"

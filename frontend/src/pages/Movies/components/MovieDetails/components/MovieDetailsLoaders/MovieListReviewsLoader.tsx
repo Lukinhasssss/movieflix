@@ -4,7 +4,7 @@ const MovieListReviewsLoader = () => (
   <ContentLoader 
     speed={2}
     width={'100%'}
-    height={400}
+    height={'100%'}
     viewBox="0 0 1150 400"
     backgroundColor="#727272"
     foregroundColor="#929292"
