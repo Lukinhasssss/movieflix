@@ -2,6 +2,8 @@ import { useState } from "react"
 import { toast } from "react-toastify"
 import { makePrivateRequest } from "../../../../../../core/utils/requests"
 
+import './styles.scss'
+
 type Props = {
   movieId: string
 }
