@@ -1,14 +1,14 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 
-import { makeLogin, makeRequest } from '../../../core/utils/requests'
-import { saveSessionData } from '../../../core/utils/auth'
+import { makeRequest } from '../../../core/utils/requests'
 import { useHistory } from 'react-router'
 import AuthCard from '../components/AuthCard/AuthCard'
 import AuthCardButton from '../components/AuthCardButton'
 
 import { ReactComponent as MainImage } from '../../../core/assets/main.svg'
 import './styles.scss'
+import { toast } from 'react-toastify'
 
 type CreateAccountData = {
   name: string
@@ -35,21 +35,11 @@ const CreateAccount = () => {
       url: '/users',
       method: 'POST',
       data: payload
-    }).then(response => {
-      const loginData = {
-        username: response.data.email,
-        password: createAccountData.password
-      }
-
-      makeLogin(loginData)
-        .then(response => {
-          setHasError(false)
-          saveSessionData(response.data)
-          history.push('/movies')
-        })
-        .catch(() => {
-          setHasError(true)
-        })
+    }).then(() => {
+      toast.success('Conta criada com sucesso 🥳')
+      history.push('/login')
+    }).catch(() => {
+      toast.error('Erro ao tentar criar a conta 😢')
     })
   }
 
