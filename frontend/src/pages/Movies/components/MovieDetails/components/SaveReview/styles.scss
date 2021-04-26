@@ -24,7 +24,7 @@
   font-family: 'Open Sans', sans-serif;
   color: var(--mediumGray);
   outline: 0;
-  resize: vertical;
+  resize: none;
 }
 
 .new-review-text:focus {
@@ -72,4 +72,26 @@
   letter-spacing: -0.015em;
   text-transform: uppercase;
   color: var(--black);
+}
+
+@media (max-width: 730px) {
+  .new-review-text {
+    min-height: 120px;
+  }
+}
+
+@media (max-width: 600px) {
+  .new-review-button {
+    width: 280px;
+  }
+}
+
+@media (max-width: 450px) {
+  .new-review-button {
+    width: 100%;
+  }
+
+  .new-review-button-text {
+    font-size: 14px;
+  }
 }

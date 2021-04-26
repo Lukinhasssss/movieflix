@@ -15,7 +15,7 @@ const Navbar = () => {
   return (
     <nav className="navbar-container">
       <div className="navbar-content">
-        <Link to="/" className="navbar-logo">MovieFlix</Link>
+        <Link to="/movies" className="navbar-logo">MovieFlix</Link>
         {isUserLogged && (
           <div
             className="navbar-logout-button"

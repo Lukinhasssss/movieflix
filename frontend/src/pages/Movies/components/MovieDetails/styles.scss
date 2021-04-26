@@ -52,8 +52,6 @@
 
 .movie-details-description-container {
   width: 100%;
-  // min-height: 130px;
-  // max-height: 170px;
   padding: 10px 20px;
   border: 1px solid var(--white);
   border-radius: 10px;
@@ -83,4 +81,82 @@
   padding: 20px 20px 0px 20px;
   display: flex;
   flex-direction: column;
+  max-height: 900px;
+  overflow-y: auto;
+  /* Hide scrollbar for IE, Edge and Firefox */
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.reviews-container::-webkit-scrollbar {
+  display: none;
+}
+
+@media (max-width: 1280px) {
+  .movie-details-content {
+    flex-direction: column;
+  }
+
+  .movie-details-image {
+    height: 500px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .movie-details-image {
+    height: 400px;
+  }
+}
+
+@media (max-width: 850px) {
+  .movie-details-content {
+    flex-direction: column;
+  }
+
+  .movie-details-image {
+    height: 300px;
+  }
+}
+
+@media (max-width: 730px) {
+  .movie-details-container {
+    padding: 30px 50px;
+  }
+
+  .movie-details-description-container {
+    max-height: 150px;
+  }
+}
+
+@media (max-width: 630px) {
+  .movie-details-image {
+    height: 250px;
+  }
+}
+
+@media (max-width: 530px) {
+  .movie-details-container {
+    padding: 30px 50px;
+  }
+
+  .movie-details-image {
+    height: 200px;
+  }
+}
+
+@media (max-width: 430px) {
+  .movie-details-container {
+    padding: 30px;
+  }
+
+  .movie-details-image {
+    height: 180px;
+  }
+}
+
+@media (max-width: 330px) {
+  .movie-details-image {
+    height: 150px;
+  }
 }

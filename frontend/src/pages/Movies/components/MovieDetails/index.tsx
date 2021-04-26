@@ -17,11 +17,13 @@ const MovieDetails = () => {
   const { movieId } = useParams<ParamsType>()
   const [movie, setMovie] = useState<Movie>()
   const [hasPermission, setHasPermission] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
 
   const getMovies = useCallback(() => {
     makePrivateRequest({ url: `/movies/${movieId}` })
       .then(response => {
         setMovie(response.data)
+        setIsLoading(false)
       })
   }, [movieId])
 
@@ -30,7 +32,7 @@ const MovieDetails = () => {
     setHasPermission(currentUser.authorities.toString() === 'ROLE_MEMBER')
 
     getMovies()
-  }, [getMovies, movie?.reviews])
+  }, [getMovies])
 
   return (
     <div className="movie-details-container">

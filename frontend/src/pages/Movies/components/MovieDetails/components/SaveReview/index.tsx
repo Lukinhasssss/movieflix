@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { toast } from "react-toastify"
+import history from "../../../../../../core/utils/history"
 import { makePrivateRequest } from "../../../../../../core/utils/requests"
 
 import './styles.scss'
@@ -22,12 +23,11 @@ const SaveReview = ({ movieId }: Props) => {
       method: 'POST',
       data: payload
     }).then(() => {
+      history.push(`/movies`)
       toast.success('Avaliação salva com sucesso 😄', { delay: 500 })
     }).catch(() => {
       toast.error('Ocorreu um erro ao salvar sua avaliação 😕')
     })
-
-    setReview('')
   }
 
   const handleChangeReviewText = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
