@@ -31,7 +31,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 	
 	private static final String[] PUBLIC = { "/oauth/token", "/h2-console/**" };
 	
-	private static final String[] CREATE_ACCOUNT = { "/users" };
+	private static final String[] CREATE_ACCOUNT = { "/users/**" };
 	
 	private static final String[] USERS = { "/users/**" };
 	
@@ -54,7 +54,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 		
 		http.authorizeRequests()
 		.antMatchers(PUBLIC).permitAll()
-		.antMatchers(HttpMethod.POST, CREATE_ACCOUNT).hasAnyRole("MEMBER")
+		.antMatchers(HttpMethod.POST, CREATE_ACCOUNT).permitAll()
 		.antMatchers(USERS).hasRole("MEMBER") // Somente para poder testar a rota mas o certo seria ter um ROLE_ADMIN por exemplo
 		.antMatchers(HttpMethod.POST, POST_REVIEW).hasRole("MEMBER")
 //		.antMatchers(HttpMethod.GET, VISITOR_AND_MEMBER).hasAnyRole("VISITOR", "MEMBER")
