@@ -8,11 +8,13 @@ import { makePrivateRequest } from '../../core/utils/requests';
 import Pagination from './components/Pagination';
 
 import './styles.scss';
+import MovieCardLoader from './components/MovieCardLoader';
 
 const Movies = () => {
   const [moviesResponse, setMoviesResponse] = useState<MovieResponse>()
   const [activePage, setActivePage] = useState(0)
   const [genre, setGenre] = useState<Genre>()
+  const [isLoading, setIsLoading] = useState(true)
 
   const getMovies = useCallback(() => {
     const params = {
@@ -24,6 +26,7 @@ const Movies = () => {
     makePrivateRequest({ url: '/movies', params })
       .then(response => {
         setMoviesResponse(response.data)
+        setIsLoading(false)
       })
   }, [activePage, genre?.id])
 
@@ -44,11 +47,15 @@ const Movies = () => {
       />
 
       <div className="movie-content">
-        {moviesResponse?.content.map(movie => (
-          <Link to={ `/movies/${movie.id}` } key={ movie.id }>
-            <MovieCard movie={ movie } />
-          </Link>
-        ))}
+        { isLoading ? (
+          <MovieCardLoader />
+        ) : (
+          moviesResponse?.content.map(movie => (
+            <Link to={ `/movies/${movie.id}` } key={ movie.id }>
+              <MovieCard movie={ movie } />
+            </Link>
+          ))
+        )}
       </div>
 
       {moviesResponse && (
