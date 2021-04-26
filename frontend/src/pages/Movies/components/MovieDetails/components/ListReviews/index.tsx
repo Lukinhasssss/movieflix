@@ -6,7 +6,7 @@ type Props = {
   review: Review
 }
 
-const MovieReview = ({ review }: Props) => {
+const ListReviews = ({ review }: Props) => {
   return (
     <>
       <div>
@@ -22,4 +22,4 @@ const MovieReview = ({ review }: Props) => {
   )
 }
 
-export default MovieReview
+export default ListReviews

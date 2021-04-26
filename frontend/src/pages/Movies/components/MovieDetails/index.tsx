@@ -1,11 +1,11 @@
 import { useCallback, useEffect, useState } from 'react'
-import { useHistory, useParams } from 'react-router'
-import { toast } from 'react-toastify';
+import { useParams } from 'react-router'
 
 import { Movie } from '../../../../core/types/Movie'
 import { getAccessTokenDecoded } from '../../../../core/utils/auth'
 import { makePrivateRequest } from '../../../../core/utils/requests'
-import MovieReview from './components/MovieReview'
+import ListReviews from './components/ListReviews'
+import SaveReview from './components/SaveReview'
 
 import './styles.scss'
 
@@ -14,48 +14,23 @@ type ParamsType = {
 }
 
 const MovieDetails = () => {
-  const history = useHistory()
   const { movieId } = useParams<ParamsType>()
   const [movie, setMovie] = useState<Movie>()
   const [hasPermission, setHasPermission] = useState(false)
-  const [review, setReview] = useState('')
 
-  const getMovies = useCallback(() => {  
+  const getMovies = useCallback(() => {
     makePrivateRequest({ url: `/movies/${movieId}` })
       .then(response => {
         setMovie(response.data)
       })
   }, [movieId])
 
-  const saveReview = () => {
-    const payload = {
-      movieId,
-      text: review
-    }
-
-    makePrivateRequest({
-      url: '/reviews',
-      method: 'POST',
-      data: payload
-    }).then(() => {
-      history.push(`/`)
-      toast.success('Avaliação salva com sucesso 😄', { delay: 500 })
-      // window.location.reload() // Da certo mas para este caso não fica muito legal.
-    }).catch(() => {
-      toast.error('Ocorreu um erro ao salvar sua avaliação 😕')
-    })
-  }
-
   useEffect(() => {
     const currentUser = getAccessTokenDecoded()
     setHasPermission(currentUser.authorities.toString() === 'ROLE_MEMBER')
 
     getMovies()
-  }, [getMovies])
-
-  const handleChangeReview = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setReview(event.target.value)
-  }
+  }, [getMovies, movie?.reviews])
 
   return (
     <div className="movie-details-container">
@@ -77,27 +52,13 @@ const MovieDetails = () => {
       </div>
 
       {hasPermission && (
-        <div className="post-new-review-container">
-          <textarea
-            value={ review }
-            placeholder="Digite aqui sua avaliação"
-            className="new-review-text"
-            onChange={ handleChangeReview }
-          />
-
-          <button
-            className="new-review-button"
-            onClick={ saveReview }
-          >
-            <span className="new-review-button-text">Salvar avaliação</span>
-          </button>
-        </div>
+        <SaveReview movieId={ movieId } />
       )}
 
       {movie?.reviews.length !== 0 && (
         <div className="reviews-container">
           {movie?.reviews.map(review => (
-            <MovieReview review={ review } key={review.id} />
+            <ListReviews review={ review } key={review.id} />
           ))}
         </div>
       )}
