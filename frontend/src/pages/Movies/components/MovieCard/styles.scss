@@ -47,3 +47,35 @@
   color: var(--white);
   margin-top: 5px;
 }
+
+@media (max-width: 1090px) {
+  .movie-card-container {
+    width: 230px;
+    height: 320px;
+  }
+}
+
+@media (max-width: 969px) {
+  .movie-card-container {
+    width: 270px;
+    height: 340px;
+  }
+}
+
+@media (max-width: 800px) {
+  .movie-card-container {
+    width: 230px;
+    height: 320px;
+  }
+}
+
+@media (max-width: 720px) {
+  .movie-card-container {
+    width: 270px;
+    height: 360px;
+  }
+
+  .movie-image {
+    height: 200px;
+  }
+}

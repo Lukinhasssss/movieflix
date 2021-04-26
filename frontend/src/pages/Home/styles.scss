@@ -132,7 +132,7 @@
   }
 
   .home-title {
-    font-size: 35px;
+    font-size: 38px;
     line-height: 50px;
     letter-spacing: -0.015em;
   }
@@ -143,5 +143,15 @@
     margin-bottom: 40px;
     font-size: 18px;
     line-height: 24px;
+  }
+
+  .no-account-container {
+    p {
+      font-size: 16px;
+    }
+
+    a {
+      font-size: 16px;
+    }
   }
 }

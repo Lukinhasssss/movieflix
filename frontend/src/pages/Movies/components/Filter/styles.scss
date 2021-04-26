@@ -68,3 +68,14 @@
     background-color: var(--mediumGray);
   }
 }
+
+@media (max-width: 720px) {
+  .filter-container {
+    width: 280px;
+    height: 60px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
