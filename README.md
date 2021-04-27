@@ -47,6 +47,11 @@ E caso queira, você também pode criar sua própria conta. Por padrão, novas c
 ## Modelo Conceitual
 ![Modelo Conceitual](https://github.com/Lukinhasssss/assets/blob/main/movieflix/modelo-conceitual.png)
 
+## Documentação da API
+<a href="https://movieflix-lucas.herokuapp.com/swagger-ui.html">
+  Swagger
+</a>
+
 # Tecnologias utilizadas
 ## Backend
 - Java
