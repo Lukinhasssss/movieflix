@@ -15,9 +15,9 @@
   <img src="https://github.com/Lukinhasssss/assets/blob/main/movieflix/criar-conta.png" width="600" />
   <img src="https://github.com/Lukinhasssss/assets/blob/main/movieflix/list-movies.png" width="600" />
   <img src="https://github.com/Lukinhasssss/assets/blob/main/movieflix/movie-details.png" width="600" />
-  <div align=left>
+  <div align="center">
     <p>
-      <a href="https://drive.google.com/file/d/12IQPdznSnwclYJEhHHJvUHOoSkfQwou-/view?usp=sharing">Aqui </a>
+      <a href="https://drive.google.com/file/d/12IQPdznSnwclYJEhHHJvUHOoSkfQwou-/view?usp=sharing" target="_blank">Aqui </a>
       você irá encontrar vídeos e mais imagens da aplicação.
     </p>
   </div>
