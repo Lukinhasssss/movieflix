@@ -11,7 +11,7 @@
   </p>
 </div>
 
-<div align="left">
+<div align="center">
   <img src="https://github.com/Lukinhasssss/assets/blob/main/movieflix/login.png" width="600" />
   <img src="https://github.com/Lukinhasssss/assets/blob/main/movieflix/criar-conta.png" width="600" />
   <img src="https://github.com/Lukinhasssss/assets/blob/main/movieflix/list-movies.png" width="600" />
