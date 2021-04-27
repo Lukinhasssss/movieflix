@@ -12,11 +12,11 @@
 </div>
 
 ## Layout Web
-<div align="center" float="left">
-  <img src="https://github.com/Lukinhasssss/assets/blob/main/movieflix/login.png" width="500" />
-  <img src="https://github.com/Lukinhasssss/assets/blob/main/movieflix/criar-conta.png" width="500" />
-  <img src="https://github.com/Lukinhasssss/assets/blob/main/movieflix/list-movies.png" width="500" />
-  <img src="https://github.com/Lukinhasssss/assets/blob/main/movieflix/movie-details.png" width="500" />
+<div align="left">
+  <img src="https://github.com/Lukinhasssss/assets/blob/main/movieflix/login.png" width="400" />
+  <img src="https://github.com/Lukinhasssss/assets/blob/main/movieflix/criar-conta.png" width="400" />
+  <img src="https://github.com/Lukinhasssss/assets/blob/main/movieflix/list-movies.png" width="400" />
+  <img src="https://github.com/Lukinhasssss/assets/blob/main/movieflix/movie-details.png" width="400" />
   <div align=left>
     <p>
       <a href="https://drive.google.com/file/d/12IQPdznSnwclYJEhHHJvUHOoSkfQwou-/view?usp=sharing">Aqui </a>
