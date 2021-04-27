@@ -24,7 +24,7 @@
 </div>
 
 # Sobre o Projeto
-MovieFlix é uma aplicação full stack web e mobile construída durante o **Bootcamp DevSuperior** (#BDS2), evento organizado pela [DevSuperior](https://devsuperior.com "Site da DevSuperior").
+MovieFlix é uma aplicação full stack web e mobile construída durante o **Bootcamp DevSuperior** (#BDS2), evento organizado pela [DevSuperior](https://devsuperior.com.br "Site da DevSuperior").
 
 A aplicação consiste em um banco de filmes, os quais podem ser listados e avaliados pelos usuários. Usuários podem ser visitantes (VISITOR) e membros (MEMBER). Apenas usuários membros podem inserir avaliações no sistema.
 
