@@ -1,17 +1,16 @@
 <div align="center">
   <img src="https://github.com/Lukinhasssss/movieflix/blob/main/frontend/public/favicon.ico" width="150" />
-  <h1>MovieFlix</h1>
+  <a href="https://lucasmonteiro-movieflix.netlify.app/login">
+    <h1>MovieFlix</h1>
+  </a>
   <p>Diga o que achou do seu filme favorito</p>
   <p>
     <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/Lukinhasssss/movieflix?color=%23FFC700">
-    <a href="https://www.linkedin.com/in/dev-lucasmonteiro/" target="_blank" rel="noopener noreferrer">
-      <img alt="Feito por" src="https://img.shields.io/badge/made%20by-Lucas%20Monteiro-%23FFC700">
-    </a> 
     <img alt="License Lucas Monteiro" src="https://img.shields.io/github/license/Lukinhasssss/movieflix?color=%23FFC700">
   </p>
 </div>
 
-<div align="center">
+<div align="left">
   <img src="https://github.com/Lukinhasssss/assets/blob/main/movieflix/login.png" width="600" />
   <img src="https://github.com/Lukinhasssss/assets/blob/main/movieflix/criar-conta.png" width="600" />
   <img src="https://github.com/Lukinhasssss/assets/blob/main/movieflix/list-movies.png" width="600" />
@@ -35,7 +34,9 @@ Ao selecionar um filme da listagem, é mostrada uma página de detalhes, onde é
 
 Um usuário possui nome, email e senha, sendo que o email é seu nome de usuário. Cada filme possui um título, subtítulo, uma imagem, ano de lançamento, sinopse, e um gênero. Os usuários membros podem registrar avaliações para os filmes. Um mesmo usuário membro pode deixar mais de uma avaliação para o mesmo filme.
 
-A aplicação também é totalmente responsiva e possui tela de cadastro. (Ambas as funcionalidades não eram obrigatórias para a conclusão do projeto e foi um bônus que resolvi implementar)
+A aplicação também é totalmente responsiva e possui tela de cadastro. (Ambas as funcionalidades não eram obrigatórias para a conclusão do projeto e foi um bônus que resolvi implementar).
+
+Link para a aplicação no netlify -> <a href="https://lucasmonteiro-movieflix.netlify.app">MovieFlix</a>
 
 Você pode acessar a aplicação com os usuários:
 <p>VISITOR -> email: bob@gmail.com | senha: 123456</p>
@@ -95,6 +96,9 @@ npm install
 # executar o projeto
 npm start
 ```
+
+## Mobile
+Em desenvolvimento...
 
 # Autor
 
