@@ -13,10 +13,10 @@
 
 ## Layout Web
 <div align="left">
-  <img src="https://github.com/Lukinhasssss/assets/blob/main/movieflix/login.png" width="400" />
-  <img src="https://github.com/Lukinhasssss/assets/blob/main/movieflix/criar-conta.png" width="400" />
-  <img src="https://github.com/Lukinhasssss/assets/blob/main/movieflix/list-movies.png" width="400" />
-  <img src="https://github.com/Lukinhasssss/assets/blob/main/movieflix/movie-details.png" width="400" />
+  <img src="https://github.com/Lukinhasssss/assets/blob/main/movieflix/login.png" width="600" />
+  <img src="https://github.com/Lukinhasssss/assets/blob/main/movieflix/criar-conta.png" width="600" />
+  <img src="https://github.com/Lukinhasssss/assets/blob/main/movieflix/list-movies.png" width="600" />
+  <img src="https://github.com/Lukinhasssss/assets/blob/main/movieflix/movie-details.png" width="600" />
   <div align=left>
     <p>
       <a href="https://drive.google.com/file/d/12IQPdznSnwclYJEhHHJvUHOoSkfQwou-/view?usp=sharing">Aqui </a>
@@ -26,6 +26,11 @@
 </div>
 
 ## Layout Web Responsivo
+<div align="left">
+  <img src="https://github.com/Lukinhasssss/assets/blob/main/movieflix/login-responsive.png" width="300" height="600" />
+  <img src="https://github.com/Lukinhasssss/assets/blob/main/movieflix/list-movies-responsive.png" width="300" height="600" />
+  <img src="https://github.com/Lukinhasssss/assets/blob/main/movieflix/movie-details-responsive.png" width="300" height="600" />
+</div>
 
 ## Layout Mobile
 
