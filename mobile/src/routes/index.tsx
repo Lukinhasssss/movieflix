@@ -1,6 +1,8 @@
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
-import { CreateAccount, Login, MovieDetails, Movies } from '../screens'
+import { CreateAccount, Home, Login, MovieDetails, Movies } from '../screens'
+import colors from '../styles/colors'
+import { Text } from 'react-native'
 
 const Stack = createStackNavigator()
 
@@ -8,12 +10,16 @@ export default function Routes() {
   return (
     <Stack.Navigator
       screenOptions={{
-        headerTitle: 'MovieFlix',
-        headerStyle: { backgroundColor: '#FFC700' },
-        headerLeft: () => '',
-        headerRight: () => ''
+        headerTitle: '',
+        headerStyle: { backgroundColor: colors.yellow },
+        headerLeft: () => <Text>MovieFlix</Text>
       }}
     >
+      <Stack.Screen
+        name="Home"
+        component={ Home }
+      />
+
       <Stack.Screen
         // options={{
         //   headerBackImage={}

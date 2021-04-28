@@ -1,4 +1,4 @@
 export default {
-  title: 'OpenSans_400Regular',
-  text: 'OpenSans_700Bold'
+  title: 'OpenSans_700Bold',
+  text: 'OpenSans_400Regular'
 }
