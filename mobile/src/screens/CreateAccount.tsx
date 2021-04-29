@@ -1,17 +1,17 @@
-import React, { useState } from "react";
-import { View, Text, StyleSheet, ScrollView, TextInput, TouchableOpacity, Image } from "react-native";
+import React, { useContext, useState } from "react";
+import { View, Text, StyleSheet, ScrollView, TextInput, TouchableOpacity, Image, Alert } from "react-native";
 
 import Button from "../core/components/Button";
+import { makeLogin, makeRequest } from "../core/utils/request";
+import { AuthContext } from "../contexts/AuthContext";
 
 import colors from "../styles/colors";
 import fonts from "../styles/fonts";
 import eyesClosed from '../core/assets/eyes-closed.png'
 import eyesOpened from '../core/assets/eyes-opened.png'
-import { makeRequest } from "../core/utils/request";
-import { useNavigation } from "@react-navigation/core";
 
 export default function CreateAccount() {
-  const navigation = useNavigation()
+  const { setUserLogged } = useContext(AuthContext)
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -27,17 +27,22 @@ export default function CreateAccount() {
           id: 2
         }]
       }
-  
       await makeRequest({
         url: '/users',
         method: 'POST',
         data: payload
       })
-  
-      navigation.navigate('Login')
+
+      Alert.alert('Cadastrar', 'Conta criada com sucesso!🥳', [
+        { text: 'OK', onPress: async () => {
+          const loginData = { username: email, password }
+          await makeLogin(loginData)
+          setUserLogged()
+        }}
+      ])
     }
     catch (e) {
-      console.log(e)
+      Alert.alert('Ocorreu um erro! 😢')
     }
   }
 
