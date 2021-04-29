@@ -1,12 +1,13 @@
 import React from "react";
 import { Feather } from "@expo/vector-icons";
-import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView } from "react-native";
+import { View, Text, StyleSheet, Image, ScrollView } from "react-native";
+import { useNavigation } from "@react-navigation/core";
+
+import Button from "../core/components/Button";
 
 import mainImage from '../core/assets/main-image.png'
 import colors from "../styles/colors";
 import fonts from "../styles/fonts";
-import { useNavigation } from "@react-navigation/core";
-import Button from "../core/components/Button";
 
 export default function Home() {
   const navigation = useNavigation()

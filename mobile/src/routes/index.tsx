@@ -3,6 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 import { CreateAccount, Home, Login, MovieDetails, Movies } from '../screens'
 import colors from '../styles/colors'
 import { Text } from 'react-native'
+import { isAuthenticated } from '../core/utils/auth'
 
 const Stack = createStackNavigator()
 
@@ -15,33 +16,39 @@ export default function Routes() {
         headerLeft: () => <Text>MovieFlix</Text>
       }}
     >
-      <Stack.Screen
-        name="Home"
-        component={ Home }
-      />
+      {isAuthenticated() ? (
+        <>
+          <Stack.Screen
+            name="Movies"
+            component={ Movies }
+          />
 
-      <Stack.Screen
-        // options={{
-        //   headerBackImage={}
-        // }}
-        name="Login"
-        component={ Login }
-      />
+          <Stack.Screen
+            name="MovieDetails"
+            component={ MovieDetails }
+          />
+        </>
+      ) : (
+        <>
+          <Stack.Screen
+            name="Home"
+            component={ Home }
+          />
 
-      <Stack.Screen
-        name="CreateAccount"
-        component={ CreateAccount }
-      />
+          <Stack.Screen
+            // options={{
+            //   headerBackImage={}
+            // }}
+            name="Login"
+            component={ Login }
+          />
 
-      <Stack.Screen
-        name="Movies"
-        component={ Movies }
-      />
-
-      <Stack.Screen
-        name="MovieDetails"
-        component={ MovieDetails }
-      />
+          <Stack.Screen
+            name="CreateAccount"
+            component={ CreateAccount }
+          />
+        </>
+      )}
     </Stack.Navigator>
   )
 }
