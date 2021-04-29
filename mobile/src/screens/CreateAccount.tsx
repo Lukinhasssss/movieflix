@@ -96,8 +96,11 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     width: '100%',
     backgroundColor: colors.darkGray,
-    paddingTop: 70,
-    paddingBottom: 30,
+    paddingVertical: 30,
+    alignItems: 'center',
+    justifyContent: 'center',
+    // paddingTop: 70,
+    // paddingBottom: 30,
     paddingHorizontal: 40
   },
 
@@ -117,7 +120,7 @@ const styles = StyleSheet.create({
 
   textInput: {
     width: '100%',
-    maxWidth: 335,
+    maxWidth: 400,
     height: 50,
     backgroundColor: colors.whiteBackground,
     borderWidth: 1,

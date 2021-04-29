@@ -27,7 +27,7 @@ export default function Button({ title, children, ...rest }: Props) {
 const styles = StyleSheet.create({
   buttonContainer: {
     width: '100%',
-    maxWidth: 330,
+    maxWidth: 400,
     height: 50,
     backgroundColor: colors.yellow,
     borderRadius: 10,

@@ -44,7 +44,8 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     backgroundColor: colors.darkGray,
     alignItems: 'center',
-    paddingVertical: 70,
+    justifyContent: 'center',
+    paddingVertical: 30,
     paddingHorizontal: 40
   },
 
