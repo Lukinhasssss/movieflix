@@ -1,26 +1,26 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image, ScrollView } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+
+import Button from "../core/components/Button";
+import { Feather } from "@expo/vector-icons";
+import { makeLogin } from "../core/utils/request";
 
 import eyesOpened from '../core/assets/eyes-opened.png'
 import eyesClosed from '../core/assets/eyes-closed.png'
-import Button from "../core/components/Button";
-import { Feather } from "@expo/vector-icons";
 import colors from "../styles/colors";
 import fonts from "../styles/fonts";
-import { makeLogin } from "../core/utils/auth";
+import { AuthContext } from "../contexts/AuthContext";
 
 export default function Login() {
-  const navigation = useNavigation()
+  const { setUserLogged } = useContext(AuthContext)
   const [hidePassword, setHidePassword] = useState(true)
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
 
   async function handleLogin() {
     const loginData = { username, password }
-    makeLogin(loginData)
-
-    navigation.navigate('Movies')
+    await makeLogin(loginData)
+    setUserLogged()
   }
 
   return (
