@@ -16,7 +16,7 @@ export default function Button({ title, children, ...rest }: Props) {
       { ...rest }
     >
       <Text style={ styles.buttonText }>
-        Fazer Login
+        { title }
       </Text>
 
       { children }

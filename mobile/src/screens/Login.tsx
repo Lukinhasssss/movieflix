@@ -10,9 +10,11 @@ import eyesClosed from '../core/assets/eyes-closed.png'
 import colors from "../styles/colors";
 import fonts from "../styles/fonts";
 import { AuthContext } from "../contexts/AuthContext";
+import { useNavigation } from "@react-navigation/core";
 
 export default function Login() {
   const { setUserLogged } = useContext(AuthContext)
+  const navigation = useNavigation()
   const [hidePassword, setHidePassword] = useState(true)
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -66,6 +68,22 @@ export default function Login() {
           />
         </View>
       </Button>
+
+      <View style={ styles.noAccountContainer }>
+        <Text style={ styles.noAccountTextLeft }>
+          Não tem conta?
+        </Text>
+
+        <View>
+          <TouchableOpacity
+            onPress={ () => navigation.navigate('CreateAccount') }
+          >
+            <Text style={ styles.noAccountTextRight }>
+              Cadastre-se
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </View>
     </ScrollView>
   )
 }
@@ -129,5 +147,25 @@ const styles = StyleSheet.create({
   buttonImage: {
     fontSize: 28,
     color: colors.white
+  },
+
+  noAccountContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginTop: 30
+  },
+
+  noAccountTextLeft: {
+    fontFamily: fonts.title,
+    color: colors.whiteBackground,
+    fontSize: 16
+  },
+
+  noAccountTextRight: {
+    fontFamily: fonts.title,
+    color: colors.yellow,
+    fontSize: 16,
+    textTransform: 'uppercase',
+    marginLeft: 5
   }
 })
