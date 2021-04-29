@@ -9,5 +9,7 @@ export default {
   white: '#FFF',
   whiteBorder: '#E1E1E1',
   placeholder: '#BFBFBF',
-  whiteBackground: '#FEFEFE'
+  whiteBackground: '#FEFEFE',
+  subtitleLight: '#CDCDCD',
+  subtitleDark: '#9E9E9E'
 }

@@ -1,19 +1,22 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { StyleSheet, ScrollView } from "react-native";
+import colors from "../styles/colors";
+import MovieCard from "./components/MovieCard";
 
 export default function Movies() {
   return (
-    <View style={styles.container}>
-      <Text>Movies Screen</Text>
-    </View>
+    <ScrollView style={ styles.container }>
+      <MovieCard />
+      <MovieCard />
+      <MovieCard />
+    </ScrollView>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  }
+    flexGrow: 1,
+    backgroundColor: colors.darkGray,
+    padding: 20,
+  },
 })

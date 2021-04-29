@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image, ScrollView } from "react-native";
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image, ScrollView, Alert } from "react-native";
 
 import Button from "../core/components/Button";
 import { Feather } from "@expo/vector-icons";
@@ -20,9 +20,16 @@ export default function Login() {
   const [password, setPassword] = useState('')
 
   async function handleLogin() {
-    const loginData = { username, password }
-    await makeLogin(loginData)
-    setUserLogged()
+    try {
+      const loginData = { username, password }
+      await makeLogin(loginData)
+      setUserLogged()
+    }
+    catch (e) {
+      Alert.alert('Ops...', 'Usuário ou senha inválidos! 😕 ', [
+        { text: 'OK', style:'cancel' }
+      ])
+    }
   }
 
   return (

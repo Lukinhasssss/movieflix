@@ -33,7 +33,7 @@ export default function CreateAccount() {
         data: payload
       })
 
-      Alert.alert('Cadastrar', 'Conta criada com sucesso!🥳', [
+      Alert.alert('Cadastro realizado', 'Conta criada com sucesso!🥳', [
         { text: 'OK', onPress: async () => {
           const loginData = { username: email, password }
           await makeLogin(loginData)
