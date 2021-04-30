@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigation } from "@react-navigation/core";
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 
 import { Movie } from "../../core/types/Movie";
@@ -7,9 +8,12 @@ import fonts from "../../styles/fonts";
 
 type Props = {
   movie: Movie
+  movieId: number
 }
 
-export default function MovieCard({ movie }: Props) {
+export default function MovieCard({ movie, movieId }: Props) {
+  const navigation = useNavigation()
+
   return (
     <View style={styles.container}>
       <Image
@@ -34,6 +38,7 @@ export default function MovieCard({ movie }: Props) {
           <TouchableOpacity
             style={ styles.buttonContainer }
             activeOpacity={ 0.5 }
+            onPress={ () =>  navigation.navigate('MovieDetails', { movieId }) }
           >
             <Text style={ styles.buttonText }>
               Ver detalhes

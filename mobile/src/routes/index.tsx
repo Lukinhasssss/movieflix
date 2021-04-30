@@ -61,9 +61,6 @@ export default function Routes() {
           />
 
           <Stack.Screen
-            // options={{
-            //   headerBackImage={}
-            // }}
             name="Login"
             component={ Login }
           />

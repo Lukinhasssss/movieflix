@@ -1,19 +1,135 @@
-import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import React, { useEffect, useState } from "react";
+import { View, Text, StyleSheet, Image, ScrollView } from "react-native";
 
-export default function MovieDetails() {
+import { Movie } from "../core/types/Movie";
+import { makePrivateRequest } from "../core/utils/request";
+
+import colors from "../styles/colors";
+import fonts from "../styles/fonts";
+
+export default function MovieDetails({ route: { params: {movieId} } }) {
+  const [movie, setMovie] = useState<Movie>()
+
+  async function getMovie() {
+    const response = await makePrivateRequest({ url: `/movies/${movieId}` })
+    setMovie(response.data)
+  }
+
+  useEffect(() => {
+    getMovie()
+  })
+
   return (
-    <View style={styles.container}>
-      <Text>MovieDetails Screen</Text>
-    </View>
+    <ScrollView contentContainerStyle={styles.container}>
+      <View style={ styles.cardContainer }>
+        <Image
+          source={{ uri: movie?.imgUrl }}
+          style={ styles.movieImage }
+        />
+
+        <View style={ styles.movieInfoContainer }>
+          <Text style={ styles.movieTitle }>
+            { movie?.title }
+          </Text>
+
+          <Text style={ styles.movieYear }>
+            { movie?.year }
+          </Text>
+
+          <Text style={ styles.movieSubtitle }>
+            { movie?.subTitle }
+          </Text>
+
+          <Text style={ styles.movieSynopseText }>
+            Sinopse
+          </Text>
+
+          <ScrollView contentContainerStyle={ styles.movieSynopseContainer }>
+            <Text style={ styles.movieSynopse }>
+              { movie?.synopsis }
+            </Text>
+          </ScrollView>
+        </View>
+      </View>
+    </ScrollView>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    flexGrow: 1,
+    backgroundColor: colors.darkGray,
+    padding: 20
+  },
+
+  cardContainer: {
+    width: '100%',
+    backgroundColor: colors.mediumGray,
+    borderRadius: 20,
+    marginBottom: 20
+  },
+
+  movieImage: {
+    width: '100%',
+    height: 220,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    resizeMode: 'cover',
+  },
+
+  movieInfoContainer: {
+    paddingVertical: 20,
+    paddingHorizontal: 15
+  },
+
+  movieTitle: {
+    fontFamily: fonts.title,
+    fontSize: 24,
+    lineHeight: 33,
+    letterSpacing: -0.015,
+    color: colors.white
+  },
+
+  movieYear: {
+    fontFamily: fonts.title,
+    fontSize: 22,
+    lineHeight: 30,
+    letterSpacing: -0.015,
+    color: colors.yellow
+  },
+
+  movieSubtitle: {
+    fontFamily: fonts.text,
+    fontSize: 18,
+    lineHeight: 23,
+    letterSpacing: -0.015,
+    color: colors.lightGray,
+    marginVertical: 10
+  },
+
+  movieSynopseText: {
+    fontFamily: fonts.title,
+    fontSize: 22,
+    lineHeight: 30,
+    letterSpacing: -0.015,
+    color: colors.white,
+    marginTop: 10
+  },
+
+  movieSynopseContainer: {
+    padding: 15,
+    borderWidth: 1,
+    borderColor: colors.whiteBorder,
+    borderRadius: 20,
+    marginTop: 10
+  },
+
+  movieSynopse: {
+    fontFamily: fonts.text,
+    fontSize: 16,
+    lineHeight: 22,
+    textAlign: 'justify',
+    letterSpacing: -0.015,
+    color: colors.lightGray
   }
 })
