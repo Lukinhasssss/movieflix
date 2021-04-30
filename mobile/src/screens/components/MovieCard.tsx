@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     height: 420,
     backgroundColor: colors.mediumGray,
     borderRadius: 10,
-    marginBottom: 20
+    marginVertical: 20
   },
 
   image: {
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     height: 220,
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
-    resizeMode: 'stretch',
+    resizeMode: 'cover',
   },
 
   infosContainer: {
