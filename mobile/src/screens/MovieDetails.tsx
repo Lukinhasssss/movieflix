@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, Image, ScrollView } from "react-native";
 
 import { Movie } from "../core/types/Movie";
 import { makePrivateRequest } from "../core/utils/request";
+import ListReview from "./components/ListReview";
 
 import colors from "../styles/colors";
 import fonts from "../styles/fonts";
@@ -17,7 +18,7 @@ export default function MovieDetails({ route: { params: {movieId} } }) {
 
   useEffect(() => {
     getMovie()
-  })
+  }, [])
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
@@ -44,13 +45,27 @@ export default function MovieDetails({ route: { params: {movieId} } }) {
             Sinopse
           </Text>
 
-          <ScrollView contentContainerStyle={ styles.movieSynopseContainer }>
+          <ScrollView
+            style={ styles.movieSynopseContainer }
+            showsVerticalScrollIndicator={ false }
+            persistentScrollbar={true}
+          >
             <Text style={ styles.movieSynopse }>
               { movie?.synopsis }
             </Text>
           </ScrollView>
         </View>
       </View>
+
+      {movie?.reviews.length !== 0 && (
+        <ScrollView style={ styles.reviewContainer }>
+          <Text style={ styles.reviewContainerTitle }>Avaliações</Text>
+
+          {movie?.reviews.map(review => (
+            <ListReview key={ review.id } review={ review } />
+          ))}
+        </ScrollView>
+      )}
     </ScrollView>
   )
 }
@@ -59,7 +74,8 @@ const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
     backgroundColor: colors.darkGray,
-    padding: 20
+    paddingTop: 20,
+    paddingHorizontal: 20
   },
 
   cardContainer: {
@@ -117,11 +133,12 @@ const styles = StyleSheet.create({
   },
 
   movieSynopseContainer: {
-    padding: 15,
+    maxHeight: 200,
     borderWidth: 1,
     borderColor: colors.whiteBorder,
     borderRadius: 20,
-    marginTop: 10
+    marginTop: 10,
+    paddingHorizontal: 15
   },
 
   movieSynopse: {
@@ -130,6 +147,23 @@ const styles = StyleSheet.create({
     lineHeight: 22,
     textAlign: 'justify',
     letterSpacing: -0.015,
-    color: colors.lightGray
+    color: colors.lightGray,
+    marginTop: 15,
+    marginVertical: 15
+  },
+
+  reviewContainer: {
+    backgroundColor: colors.mediumGray,
+    borderRadius: 20,
+    padding: 20,
+    marginBottom: 20,
+  },
+
+  reviewContainerTitle: {
+    fontFamily: fonts.title,
+    fontSize: 22,
+    lineHeight: 30,
+    letterSpacing: -0.015,
+    color: colors.white
   }
 })
