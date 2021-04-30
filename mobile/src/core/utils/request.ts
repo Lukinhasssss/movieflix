@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import axios, { AxiosRequestConfig } from 'axios'
 import { encode as btoa } from 'base-64'
 import qs from 'qs'
@@ -28,6 +29,17 @@ export async function makeRequest(params: AxiosRequestConfig) {
   })
 }
 
+export async function makePrivateRequest(params: AxiosRequestConfig) {
+  const token = await AsyncStorage.getItem('@movieflix:authData')
+
+  const headers = {
+    'Authorization': `Bearer ${token}`
+  }
+
+  // return headers
+  return makeRequest({ ...params, headers })
+}
+
 export async function makeLogin(loginData: LoginData) {
   const token = `${CLIENT_ID}:${CLIENT_SECRET}`
 
@@ -40,5 +52,17 @@ export async function makeLogin(loginData: LoginData) {
 
   const response = await makeRequest({ url: '/oauth/token', data: payload, method: 'POST', headers })
 
-  saveSessionData(response.data)
+  const { access_token } =  response.data
+
+  setAsyncKeys('@movieflix:authData', access_token)
+  // saveSessionData(response.data)
+}
+
+async function setAsyncKeys(key: string, value: string) {
+  try {
+    await AsyncStorage.setItem(key, value)
+  }
+  catch (error) {
+    console.warn(error)
+  }
 }

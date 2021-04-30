@@ -1,29 +1,33 @@
 import React from "react";
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 
-import movieImage from '../../core/assets/movie-image.png'
+import { Movie } from "../../core/types/Movie";
 import colors from "../../styles/colors";
 import fonts from "../../styles/fonts";
 
-export default function MovieCard() {
+type Props = {
+  movie: Movie
+}
+
+export default function MovieCard({ movie }: Props) {
   return (
     <View style={styles.container}>
       <Image
-        source={ movieImage }
+        source={{ uri: movie.imgUrl }}
         style={ styles.image }
       />
 
       <View style={ styles.infosContainer }>
         <Text style={ styles.title }>
-          O Retorno do Rei
+          { movie.title }
         </Text>
 
         <Text style={ styles.year }>
-          2003
+          { movie.year }
         </Text>
 
         <Text style={ styles.subtitle }>
-          O olho do inimigo está se movendo
+          { movie.subTitle }
         </Text>
 
         <View style={ styles.buttonWrapper }>

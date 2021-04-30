@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
-import { StyleSheet } from 'react-native';
 import { useFonts, OpenSans_400Regular, OpenSans_700Bold } from '@expo-google-fonts/open-sans'
 import AppLoading from 'expo-app-loading'
 
@@ -13,12 +12,12 @@ export default function App() {
   const [isUserLogged, setIsUserLogged] = useState(setUserLogged() ? true : false)
 
   async function setUserLogged() {
-    const user = await isAuthenticated()
-    if (user) {
+    const isUserAuthenticated = await isAuthenticated()
+
+    if (isUserAuthenticated)
       setIsUserLogged(true)
-    } else {
+    else 
       setIsUserLogged(false)
-    }
   }
 
   const [ fontsLoaded ] = useFonts({
@@ -37,12 +36,3 @@ export default function App() {
     </NavigationContainer>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  }
-})
