@@ -2,7 +2,6 @@ import React, { useContext, useEffect } from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
 
 import { CreateAccount, Home, Login, MovieDetails, Movies } from '../screens'
-import HeaderBackImage from '../core/components/HeaderBackImage'
 import HeaderLeft from '../core/components/HeaderLeft'
 import HeaderRight from '../core/components/HeaderRight'
 
@@ -31,7 +30,6 @@ export default function Routes() {
           screenOptions={{
             headerTitle: '',
             headerStyle: { backgroundColor: colors.yellow },
-            headerBackImage: () => <HeaderBackImage />,
             headerLeft: () => <HeaderLeft />,
             headerRight: () => <HeaderRight />
           }}
@@ -51,7 +49,6 @@ export default function Routes() {
           screenOptions={{
             headerTitle: '',
             headerStyle: { backgroundColor: colors.yellow },
-            headerBackImage: () => <HeaderBackImage />,
             headerLeft: () => <HeaderLeft />
           }}
         >
