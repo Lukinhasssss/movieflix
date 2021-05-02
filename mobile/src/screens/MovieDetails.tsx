@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, StyleSheet, Image, ScrollView, TextInput } from "react-native";
+import { View, Text, StyleSheet, Image, ScrollView } from "react-native";
 
 import { Movie } from "../core/types/Movie";
 import { makePrivateRequest } from "../core/utils/request";
@@ -7,33 +7,19 @@ import ListReview from "./components/ListReview";
 
 import colors from "../styles/colors";
 import fonts from "../styles/fonts";
-import Button from "../core/components/Button";
-import { isUserMember } from "../core/utils/auth";
+import SaveReview from "./components/SaveReview";
 
 export default function MovieDetails({ route: { params: {movieId} } }) {
   const [movie, setMovie] = useState<Movie>()
-  const [review, setReview] = useState('')
-  const [hasPermission, setHasPermission] = useState(false)
 
   async function getMovie() {
     const response = await makePrivateRequest({ url: `/movies/${movieId}` })
     setMovie(response.data)
   }
 
-  async function checkIsUserMember() {
-    const user = await isUserMember()
-    setHasPermission(user)
-  }
-
-  async function saveReview() {
-    
-  }
-
   useEffect(() => {
     getMovie()
-
-    checkIsUserMember()
-  }, [])
+  }, [movie?.reviews])
 
   return (
     <ScrollView
@@ -75,25 +61,7 @@ export default function MovieDetails({ route: { params: {movieId} } }) {
         </View>
       </View>
 
-      {hasPermission && (
-        <View style={ styles.saveReviewContainer }>
-          <TextInput
-            placeholder={ 'Deixe sua avaliação aqui' }
-            placeholderTextColor={ colors.subtitleDark }
-            multiline={ true }
-            textAlignVertical='top'
-            scrollEnabled={ true }
-            style={ styles.saveReviewInput }
-            value={ review }
-            onChangeText={ text => setReview(text) }
-          />
-
-          <Button
-            title='Salvar Avaliação'
-            onPress={ () => saveReview() }
-          />
-        </View>
-      )}
+      <SaveReview movieId={ movieId } />
 
       {movie?.reviews.length !== 0 && (
         <ScrollView style={ styles.listReviewContainer }>
