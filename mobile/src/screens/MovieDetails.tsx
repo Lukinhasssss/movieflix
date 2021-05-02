@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, StyleSheet, Image, ScrollView } from "react-native";
+import { View, Text, StyleSheet, Image, ScrollView, TextInput } from "react-native";
 
 import { Movie } from "../core/types/Movie";
 import { makePrivateRequest } from "../core/utils/request";
@@ -7,17 +7,32 @@ import ListReview from "./components/ListReview";
 
 import colors from "../styles/colors";
 import fonts from "../styles/fonts";
+import Button from "../core/components/Button";
+import { isUserMember } from "../core/utils/auth";
 
 export default function MovieDetails({ route: { params: {movieId} } }) {
   const [movie, setMovie] = useState<Movie>()
+  const [review, setReview] = useState('')
+  const [hasPermission, setHasPermission] = useState(false)
 
   async function getMovie() {
     const response = await makePrivateRequest({ url: `/movies/${movieId}` })
     setMovie(response.data)
   }
 
+  async function checkIsUserMember() {
+    const user = await isUserMember()
+    setHasPermission(user)
+  }
+
+  async function saveReview() {
+    
+  }
+
   useEffect(() => {
     getMovie()
+
+    checkIsUserMember()
   }, [])
 
   return (
@@ -60,9 +75,29 @@ export default function MovieDetails({ route: { params: {movieId} } }) {
         </View>
       </View>
 
+      {hasPermission && (
+        <View style={ styles.saveReviewContainer }>
+          <TextInput
+            placeholder={ 'Deixe sua avaliação aqui' }
+            placeholderTextColor={ colors.subtitleDark }
+            multiline={ true }
+            textAlignVertical='top'
+            scrollEnabled={ true }
+            style={ styles.saveReviewInput }
+            value={ review }
+            onChangeText={ text => setReview(text) }
+          />
+
+          <Button
+            title='Salvar Avaliação'
+            onPress={ () => saveReview() }
+          />
+        </View>
+      )}
+
       {movie?.reviews.length !== 0 && (
-        <ScrollView style={ styles.reviewContainer }>
-          <Text style={ styles.reviewContainerTitle }>Avaliações</Text>
+        <ScrollView style={ styles.listReviewContainer }>
+          <Text style={ styles.listReviewContainerTitle }>Avaliações</Text>
 
           {movie?.reviews.map(review => (
             <ListReview key={ review.id } review={ review } />
@@ -155,14 +190,35 @@ const styles = StyleSheet.create({
     marginVertical: 15
   },
 
-  reviewContainer: {
+  saveReviewContainer: {
     backgroundColor: colors.mediumGray,
     borderRadius: 20,
     padding: 20,
-    marginBottom: 20,
+    marginBottom: 20
   },
 
-  reviewContainerTitle: {
+  saveReviewInput: {
+    minHeight: 100,
+    backgroundColor: colors.white,
+    borderWidth: 1,
+    borderColor: colors.whiteBorder,
+    borderRadius: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 15,
+    fontSize: 16,
+    lineHeight: 22,
+    color: colors.darkGray,
+    marginBottom: 15
+  },
+
+  listReviewContainer: {
+    backgroundColor: colors.mediumGray,
+    borderRadius: 20,
+    padding: 20,
+    marginBottom: 20
+  },
+
+  listReviewContainerTitle: {
     fontFamily: fonts.title,
     fontSize: 22,
     lineHeight: 30,
