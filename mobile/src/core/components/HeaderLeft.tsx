@@ -13,6 +13,7 @@ export default function HeaderLeft() {
     <View style={ styles.headerLeftContainer }>
       {navigation.canGoBack() && (
         <TouchableOpacity
+          activeOpacity={ 0.3 }
           style={ styles.headerBackImageContainer }
           onPress={ () => navigation.goBack() }
         >

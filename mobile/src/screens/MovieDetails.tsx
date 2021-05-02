@@ -21,7 +21,9 @@ export default function MovieDetails({ route: { params: {movieId} } }) {
   }, [])
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+    <ScrollView
+      contentContainerStyle={styles.container}
+    >
       <View style={ styles.cardContainer }>
         <Image
           source={{ uri: movie?.imgUrl }}
@@ -49,6 +51,7 @@ export default function MovieDetails({ route: { params: {movieId} } }) {
             style={ styles.movieSynopseContainer }
             showsVerticalScrollIndicator={ false }
             persistentScrollbar={true}
+            nestedScrollEnabled={ true } // For the scrollview work inside another scrollview
           >
             <Text style={ styles.movieSynopse }>
               { movie?.synopsis }
