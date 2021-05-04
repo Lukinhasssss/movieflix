@@ -7,6 +7,7 @@ import ListReview from "./components/ListReview";
 
 import colors from "../styles/colors";
 import fonts from "../styles/fonts";
+import SaveReview from "./components/SaveReview";
 
 export default function MovieDetails({ route: { params: {movieId} } }) {
   const [movie, setMovie] = useState<Movie>()
@@ -18,10 +19,12 @@ export default function MovieDetails({ route: { params: {movieId} } }) {
 
   useEffect(() => {
     getMovie()
-  }, [])
+  }, [movie?.reviews])
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+    <ScrollView
+      contentContainerStyle={styles.container}
+    >
       <View style={ styles.cardContainer }>
         <Image
           source={{ uri: movie?.imgUrl }}
@@ -49,6 +52,7 @@ export default function MovieDetails({ route: { params: {movieId} } }) {
             style={ styles.movieSynopseContainer }
             showsVerticalScrollIndicator={ false }
             persistentScrollbar={true}
+            nestedScrollEnabled={ true } // For the scrollview work inside another scrollview
           >
             <Text style={ styles.movieSynopse }>
               { movie?.synopsis }
@@ -57,9 +61,11 @@ export default function MovieDetails({ route: { params: {movieId} } }) {
         </View>
       </View>
 
+      <SaveReview movieId={ movieId } />
+
       {movie?.reviews.length !== 0 && (
-        <ScrollView style={ styles.reviewContainer }>
-          <Text style={ styles.reviewContainerTitle }>Avaliações</Text>
+        <ScrollView style={ styles.listReviewContainer }>
+          <Text style={ styles.listReviewContainerTitle }>Avaliações</Text>
 
           {movie?.reviews.map(review => (
             <ListReview key={ review.id } review={ review } />
@@ -152,14 +158,35 @@ const styles = StyleSheet.create({
     marginVertical: 15
   },
 
-  reviewContainer: {
+  saveReviewContainer: {
     backgroundColor: colors.mediumGray,
     borderRadius: 20,
     padding: 20,
-    marginBottom: 20,
+    marginBottom: 20
   },
 
-  reviewContainerTitle: {
+  saveReviewInput: {
+    minHeight: 100,
+    backgroundColor: colors.white,
+    borderWidth: 1,
+    borderColor: colors.whiteBorder,
+    borderRadius: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 15,
+    fontSize: 16,
+    lineHeight: 22,
+    color: colors.darkGray,
+    marginBottom: 15
+  },
+
+  listReviewContainer: {
+    backgroundColor: colors.mediumGray,
+    borderRadius: 20,
+    padding: 20,
+    marginBottom: 20
+  },
+
+  listReviewContainerTitle: {
     fontFamily: fonts.title,
     fontSize: 22,
     lineHeight: 30,

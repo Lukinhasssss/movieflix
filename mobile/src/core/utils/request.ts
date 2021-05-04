@@ -3,14 +3,14 @@ import axios, { AxiosRequestConfig } from 'axios'
 import { encode as btoa } from 'base-64'
 import qs from 'qs'
 
-import { CLIENT_ID, CLIENT_SECRET, logout, saveSessionData } from './auth'
+import { CLIENT_ID, CLIENT_SECRET, logout } from './auth'
 
 export type LoginData = {
   username: string
   password: string
 }
 
-const BASE_URL = process.env.REACT_APP_BASE_URL ?? 'http://192.168.15.59:8080'
+const BASE_URL = process.env.BASE_URL ?? 'http://localhost:8080'
 
 axios.interceptors.response.use(function(response) {
   return response
@@ -30,13 +30,12 @@ export async function makeRequest(params: AxiosRequestConfig) {
 }
 
 export async function makePrivateRequest(params: AxiosRequestConfig) {
-  const token = await AsyncStorage.getItem('@movieflix:authData')
+  const token = await AsyncStorage.getItem('@movieflix:accessToken')
 
   const headers = {
     'Authorization': `Bearer ${token}`
   }
 
-  // return headers
   return makeRequest({ ...params, headers })
 }
 
@@ -54,8 +53,7 @@ export async function makeLogin(loginData: LoginData) {
 
   const { access_token } =  response.data
 
-  setAsyncKeys('@movieflix:authData', access_token)
-  // saveSessionData(response.data)
+  setAsyncKeys('@movieflix:accessToken', access_token)
 }
 
 async function setAsyncKeys(key: string, value: string) {

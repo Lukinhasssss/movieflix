@@ -53,10 +53,10 @@ export default function MovieCard({ movie, movieId }: Props) {
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    height: 420,
+    height: 450,
     backgroundColor: colors.mediumGray,
     borderRadius: 10,
-    marginVertical: 20
+    marginBottom: 20
   },
 
   image: {
