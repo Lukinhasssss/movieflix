@@ -11,7 +11,7 @@ import Filter from "./components/Filter";
 export default function Movies() {
   const [movies, setMovies] = useState<Movie[]>()
   const [page, setPage] = useState(0)
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
   const [isLoadingMore, setIsLoadingMore] = useState(false)
   const [genre, setGenre] = useState<Genre>()
 
@@ -81,7 +81,7 @@ export default function Movies() {
             showsVerticalScrollIndicator={ false }
             onEndReachedThreshold={ 0.1 } // 0.1 --> Quando o usuário chegar a 10% do final da tela
             onEndReached={({ distanceFromEnd }) => loadMore(distanceFromEnd)}
-            ListFooterComponent={ isLoadingMore ? <ActivityIndicator color={ colors.yellow } /> : <></> }
+            ListFooterComponent={ isLoadingMore ? <ActivityIndicator style={{marginBottom: 20}} color={ colors.yellow } /> : <></> }
           />
         </>
       )}
@@ -92,7 +92,9 @@ export default function Movies() {
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
+    height: '100%',
     backgroundColor: colors.darkGray,
-    paddingHorizontal: 20
+    paddingHorizontal: 20,
+    paddingTop: 20
   },
 })
