@@ -10,7 +10,7 @@ export type LoginData = {
   password: string
 }
 
-const BASE_URL = process.env.REACT_APP_BASE_URL ?? 'http://192.168.15.59:8080'
+const BASE_URL = process.env.BASE_URL ?? 'http://192.168.15.59:8080'
 
 axios.interceptors.response.use(function(response) {
   return response
