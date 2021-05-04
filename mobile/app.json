@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "mobile",
-    "slug": "mobile",
+    "name": "MovieFlix",
+    "slug": "movieflix",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -17,16 +17,19 @@
       "**/*"
     ],
     "ios": {
+      "bundleIdentifier": "com.lucasmonteiro.movieflix",
+      "buildNumber": "1.0.0",
       "supportsTablet": true
     },
     "android": {
+      "package": "com.lucasmonteiro.movieflix",
+      "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       }
     },
-    "web": {
-      "favicon": "./assets/favicon.png"
-    }
+    "description": "",
+    "githubUrl": "https://github.com/Lukinhasssss/movieflix"
   }
 }
