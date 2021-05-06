@@ -103,7 +103,19 @@ npm start
 ```
 
 ## Mobile
-Em desenvolvimento...
+```bash
+# clonar repositório
+git clone https://github.com/Lukinhasssss/movieflix.git
+
+# entrar na pasta do projeto mobile
+cd mobile
+
+# instalar dependências
+npm install
+
+# executar o projeto
+expo start
+```
 
 # Autor
 
