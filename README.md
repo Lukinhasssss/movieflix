@@ -36,7 +36,8 @@ Um usuário possui nome, email e senha, sendo que o email é seu nome de usuári
 
 A aplicação também é totalmente responsiva e possui tela de cadastro. (Ambas as funcionalidades não eram obrigatórias para a conclusão do projeto e foi um bônus que resolvi implementar).
 
-Link para a aplicação no netlify -> <a href="https://lucasmonteiro-movieflix.netlify.app">MovieFlix</a>
+Link para a aplicação no netlify -> <a href="https://lucasmonteiro-movieflix.netlify.app">MovieFlix</a> <br />
+Link para download do APK -> <a href="https://drive.google.com/file/d/1vLj6_MJCwOpa41HiXskum8hwUhekh45o/view?usp=sharing">APK MovieFlix</a>
 
 Você pode acessar a aplicação com os usuários:
 <p>VISITOR -> email: bob@gmail.com | senha: 123456</p>
@@ -103,7 +104,19 @@ npm start
 ```
 
 ## Mobile
-Em desenvolvimento...
+```bash
+# clonar repositório
+git clone https://github.com/Lukinhasssss/movieflix.git
+
+# entrar na pasta do projeto mobile
+cd mobile
+
+# instalar dependências
+npm install
+
+# executar o projeto
+expo start
+```
 
 # Autor
 
