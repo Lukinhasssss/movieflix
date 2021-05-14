@@ -12,7 +12,7 @@ const AuthCardButton = ({ buttonTitle }: Props) => {
         { buttonTitle }
       </div>
       <div className="auth-button-image-container">
-        <Arrow />
+        <Arrow data-testid="arrow-image" />
       </div>
     </button>
   )
