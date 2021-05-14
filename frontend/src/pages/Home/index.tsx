@@ -35,7 +35,7 @@ const Home = () => {
           <h1 className="home-title">Avalie Filmes</h1>
           <h2 className="home-subtitle">Diga o que você achou do seu filme favorito</h2>
           <div className="home-image-container">
-            <MainImage />
+            <MainImage data-testid="main-image" />
           </div>
         </div>
 
@@ -55,12 +55,14 @@ const Home = () => {
               type="email"
               placeholder="Email"
               className="auth-input"
+              data-testid="email"
             />
             <input
               {...register("password", { required: true })}
               type="password"
               placeholder="Senha"
               className="auth-input"
+              data-testid="password"
             />
             <AuthCardButton buttonTitle="Logar" />
           </form>

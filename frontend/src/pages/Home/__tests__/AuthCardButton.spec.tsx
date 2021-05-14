@@ -8,9 +8,9 @@ test('should render AuthCardButton', () => {
     />
   )
 
-  const buttonTitleElement = screen.getByText('LOGAR')
-  const arrowImageElement = screen.getByTestId('arrow-image')
+  const buttonTitle = screen.getByText('LOGAR')
+  const arrowImage = screen.getByTestId('arrow-image')
 
-  expect(buttonTitleElement).toBeInTheDocument()
-  expect(arrowImageElement).toBeInTheDocument()
+  expect(buttonTitle).toBeInTheDocument()
+  expect(arrowImage).toBeInTheDocument()
 })
