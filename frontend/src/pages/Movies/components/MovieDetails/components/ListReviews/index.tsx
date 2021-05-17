@@ -10,7 +10,7 @@ const ListReviews = ({ review }: Props) => {
   return (
     <>
       <div>
-        <Star className="ml-15" />
+        <Star className="ml-15" data-testid="star-image" />
         <span className="review-username">{ review.user.name }</span>
       </div>
       <div className="review-text-container">
